@@ -379,34 +379,30 @@ header .second-nav ul li a i {
   color: var(--main-color);
 }
 /* End Articles */
+/* Start Gallery */
 .gallery {
   background-color: #ddd;
   padding-bottom: 100px;
-
 }
-.gallery .gallery-content{
+.gallery .gallery-content {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 40px;
 }
-.gallery .gallery-content .box-image{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.gallery .gallery-content .box-image {
+  padding: 15px;
   background-color: white;
   box-shadow: 1px 1px 15px 0px #aaa;
   transition: var(--transitionTime);
 }
-.gallery .gallery-content .box-image:hover{
+.gallery .gallery-content .box-image:hover {
   box-shadow: 5px 5px 15px 0px gray;
 }
-.gallery .gallery-content .box-image .image{
-  max-width: 95%;
+.gallery .gallery-content .box-image .image {
   overflow: hidden;
-  max-height: 95%;
   position: relative;
 }
-.gallery .gallery-content .box-image .image::before{
+.gallery .gallery-content .box-image .image::before {
   content: "";
   position: absolute;
   width: 0;
@@ -415,23 +411,120 @@ header .second-nav ul li a i {
   top: 50%;
   left: 50%;
   border-radius: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   z-index: 1;
+  opacity: 1;
+}
+.gallery .gallery-content .box-image .image:hover::before {
+  animation: flashing 0.6s;
+}
+.gallery .gallery-content .box-image .image img {
+  max-width: 100%;
+  transition: var(--transitionTime);
+}
+.gallery .gallery-content .box-image:hover .image img {
+  transform: rotate(5deg) scale(1.1);
+}
+/* Start Features */
+.features {
+  padding-bottom: 100px;
+}
+.features .features-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 40px;
+  text-align: center;
+}
+.features .features-content .feature {
+  border: 1px solid #aaa;
+}
+.features .features-content .feature .img-feature {
+  overflow: hidden;
+  position: relative;
+}
+.features .features-content .feature .img-feature::before {
+  /*overlay*/
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.features .features-content .feature .img-feature::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-style: solid;
+  border-color: transparent transparent white transparent;
+  border-width: 0 0 170px 500px;
   transition: var(--transitionTime);
 
 }
-.gallery .gallery-content .box-image .image:hover::before{
-  animation:hover-image linear forwards .5s;
-}
-.gallery .gallery-content .box-image .image img{
- max-width: 100%;
- transition: var(--transitionTime);
-}
-.gallery .gallery-content .box-image:hover .image img{
-  transform: rotate(5deg) scale(1.1);
+.features .features-content .feature:hover .img-feature:after {
+  border-width: 0px 500px 170px 0px;
 }
 
+.features .features-content .feature .img-feature img {
+  max-width: 100%;
+}
 
+.features .features-content .feature h1 {
+  padding: 20px 0;
+  font-size: 40px;
+  position: relative;
+  width: fit-content;
+  margin: 30px auto;
+}
+.features .features-content .feature h1:after {
+  content: "";
+  width: 80%;
+  height: 5px;
+  background-color: red;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.features .features-content .feature p {
+  padding: 30px;
+  color: gray;
+  line-height: 1.8;
+  margin-bottom: 30px;
+  font-size: 20px;
+}
+.features .features-content .feature a {
+  font-size: 25px;
+  display: block;
+  width: fit-content;
+  text-decoration: none;
+  font-weight: bold;
+  border: red 3px solid;
+  color: red;
+  padding: 10px 30px;
+  margin: 0 auto 30px;
+  position: relative;
+
+}
+.features .features-content .feature a::before{
+  content: "";
+  width: 0;
+  height: 100%;
+  position: absolute;
+  top: -1px;
+  left: 0;
+  background-color: red;
+  transition: var(--transitionTime);
+  z-index: -1;
+}
+.features .features-content .feature:hover a{
+  color: white;
+}
+.features .features-content .feature:hover a::before {
+  width: 100%;
+}
+/* End Features */
 /*Start Animations*/
 @keyframes up-and-down {
   0%,
@@ -484,7 +577,6 @@ header .second-nav ul li a i {
     width: 50%;
     height: 100%;
     z-index: -1;
-
   }
 }
 @keyframes move-arrow {
@@ -496,19 +588,16 @@ header .second-nav ul li a i {
     right: 0px;
   }
 }
-@keyframes hover-image {
-  0% {
-    width: 0;
-   height: 0;
+@keyframes flashing {
+  0%,
+  40% {
+    opacity: 1;
   }
 
-  90% {
-    width: 110%;
-    height: 114%;
-  }
   100% {
-   color:transparent
+    opacity: 0;
+    width: 200%;
+    height: 200%;
   }
- 
 }
 /*End Animations*/
